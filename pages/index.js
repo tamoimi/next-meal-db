@@ -34,7 +34,6 @@ export default function PeopleList({}) {
   if (error) return "에러 발생" + error.message;
 
   return (
-    <>
       <div className="container">
         <Seo title="Home" />
         {isLoading ? (
@@ -43,12 +42,12 @@ export default function PeopleList({}) {
           </>
         ) : (
           <>
-            {people.map((people) => (
+            {people?.map((people) => (
               <div className="people" key={people.id}>
-                <h4>{people.name}</h4>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${people.profile_path}`}
                 />
+                <h4>{people.name}</h4>
               </div>
             ))}
           </>
@@ -75,6 +74,5 @@ export default function PeopleList({}) {
           }
         `}</style>
       </div>
-    </>
   );
 }
