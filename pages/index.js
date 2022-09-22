@@ -34,45 +34,51 @@ export default function PeopleList({}) {
   if (error) return "에러 발생" + error.message;
 
   return (
-      <div className="container">
-        <Seo title="Home" />
-        {isLoading ? (
-          <>
-            <div>Loading...</div>
-          </>
-        ) : (
-          <>
-            {people?.map((people) => (
-              <div className="people" key={people.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${people.profile_path}`}
-                />
-                <h4>{people.name}</h4>
-              </div>
-            ))}
-          </>
-        )}
-        <style jsx>{`
-          .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 20px;
-            gap: 20px;
-          }
-          .people img {
-            max-width: 100%;
-            border-radius: 12px;
-            transition: transform 0.2s ease-in-out;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-          }
-          .people:hover img {
-            transform: scale(1.05) translateY(-10px);
-          }
-          .people h4 {
-            font-size: 18px;
-            text-align: center;
-          }
-        `}</style>
-      </div>
+    <div className="container">
+      <Seo title="Home" />
+      {isLoading ? (
+        <>
+          <div>Loading...</div>
+        </>
+      ) : (
+        <>
+          {people?.map((people) => (
+            <div className="people" key={people.id}>
+              {/* <div className="people_img"> */}
+              <Image
+                src={`https://image.tmdb.org/t/p/w500${people.profile_path}`}
+                alt="people"
+                width={500}
+                height={650}
+                className="people_img"
+              />
+              {/* </div> */}
+              <h4>{people.name}</h4>
+            </div>
+          ))}
+        </>
+      )}
+      <style jsx>{`
+        .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding: 20px;
+          gap: 20px;
+        }
+        /* .people .people_img {
+          max-width: 250px;
+          border-radius: 12px;
+          transition: transform 0.2s ease-in-out;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+        .people:hover .people_img {
+          transform: scale(1.05) translateY(-10px);
+        } */
+        .people h4 {
+          font-size: 18px;
+          text-align: center;
+        }
+      `}</style>
+    </div>
   );
 }
